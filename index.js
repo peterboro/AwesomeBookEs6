@@ -29,7 +29,6 @@ class task {
     div.className = `alert alert-${className}`;
     div.appendChild(document.createTextNode(message));
     const container = document.querySelector('.firstContainer');
-    // const form = document.querySelector('#book-input');
     const navigation = document.querySelector('.navigation');
     container.insertBefore(div, navigation);
     setTimeout(() => document.querySelector('.alert').remove(), 3000);
@@ -52,9 +51,9 @@ const sections = [listSection, addSection, contactSection];
 
 const dateTime = document.querySelector('#dateTime');
 
-function saveActiveNavItemLocally(id) {
+const saveActiveNavItemLocally = (id) => {
   localStorage.setItem('activeNavItem', id);
-}
+};
 
 document.addEventListener('DOMContentLoaded', task.currentBooks);
 document.querySelector('#book-input').addEventListener('submit', (e) => {
@@ -78,7 +77,7 @@ document.querySelector('#list-book').addEventListener('click', (e) => {
   task.showAlert('Book Removed');
 });
 
-function displaySection(id) {
+const displaySection = (id) => {
   sections.forEach((section) => {
     if (section.id === id) {
       section.classList.remove('d-none');
@@ -86,9 +85,9 @@ function displaySection(id) {
       section.classList.add('d-none');
     }
   });
-}
+};
 
-function activateNavItem(id) {
+const activateNavItem = (id) => {
   navItems.forEach((navItem) => {
     if (navItem.id === id) {
       navItem.classList.add('li-active');
@@ -96,10 +95,10 @@ function activateNavItem(id) {
       navItem.classList.remove('li-active');
     }
   });
-}
+};
 
 // eslint-disable-next-line no-unused-vars
-function getSectionId(navItemId) {
+const getSectionId = (navItemId) => {
   let sectionId;
   switch (navItemId) {
     case 'listBooks':
@@ -115,20 +114,7 @@ function getSectionId(navItemId) {
       sectionId = '';
   }
   return sectionId;
-}
-
-// window.addEventListener('load', () => {
-//   const navItemId = localStorage.getItem('activeNavItem');
-//   const sectionId = getSectionId(navItemId);
-//   displaySection(sectionId);
-//   activateNavItem(navItemId);
-//   task.books = JSON.parse(localStorage.getItem('books'));
-//   if (task.books) {
-//     appendAllBooks();
-//   } else {
-//     task.books = [];
-//   }
-// });
+};
 
 listBook.addEventListener('click', () => {
   displaySection(listSection.id);
